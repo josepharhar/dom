@@ -1393,48 +1393,8 @@ property of the event being dispatched.
      <li><p>Otherwise, set <var>event</var>'s {{Event/eventPhase}} attribute to
      {{Event/CAPTURING_PHASE}}.
 
-     <li><p>Let <var>target</var> be <var>struct</var>'s <a for=Event/path>invocation target</a>.
-
-     <li><p>If <var>target</var> is a <a>Document</a>, then:
-
-     <ol>
-      <!-- TODO how do I refer to the HTML spec for "topmost pop-up auto or hint"? -->
-      <li><p>Let <var>topmostPopup</var> be the result of running <a>topmost pop-up auto or hint</a>
-      given <var>struct</var>'s <a for=Event/path>invocation target</a>.
-
-      <li><p>If <var>topmostPopup</var> is not null, then:
-
-      <ol>
-       <!-- TODO how do I refer to the pointerdown event? -->
-       <li><p>If <var>event</var> is a pointerdown event, then:
-
-        <ol>
-         <li><p>Set <var>target</var>'s <a>pop-up pointerdown target</a> to the result of running
-         <a>nearest open ancestral pop-up</a> given <var>target</var> and "<code>inclusive</code>".
-        </ol>
-
-       <li><p>If <var>event</var> is a pointerup event, then:
-
-        <ol>
-         <li><p>Let <var>ancestor</var> be the result of running <a>nearest ancestral open
-         pop-up</a> given <var>target</var> and "<code>inclusive</code>".
-
-         <li><p>Let <var>sameTarget</var> be true if <var>ancestor</var> is <var>target</var>'s
-         <a>pop-up pointerdown target</a>.
-
-         <li><p>Set <var>target</var>'s <a>pop-up pointerdown target</a> to null.
-
-         <li><p>If <var>sameTarget</var> is true, then run <a>hide all pop-ups until</a> given
-         ancestor, false, false, and true.
-        </ol>
-
-       <li><p>If <var>event</var> is a keydown event for the <kbd>Escape</kbd> key, then:
-
-        <ol>
-         <li><p>Run the <a>hide pop-up algorithm</a> given <var>topmostPopup</var>, true, and false.
-        </ol>
-      </ol>
-     </ol>
+     <li><p>Run {light dismiss open pop-ups} given <var>struct</var>'s <a
+     for=Event/path>invocation target</a>.
 
      <li><p><a>Invoke</a> with <var>struct</var>, <var>event</var>, "<code>capturing</code>", and
      <var>legacyOutputDidListenersThrowFlag</var> if given.
